@@ -11,6 +11,8 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 
+from flask_jwt_extended import JWTManager
+
 # from models import Person
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -42,6 +44,8 @@ app.register_blueprint(api, url_prefix='/api')
 
 # Handle/serialize errors like a JSON object
 
+app.config["JWT_SECRET_KEY"] = "secret-code"  # ¡Cambia las palabras "super-secret" por otra cosa!
+jwt = JWTManager(app)
 
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):
