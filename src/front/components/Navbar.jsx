@@ -16,12 +16,12 @@ export const Navbar = () => {
 	}
 
 	return (
-		<nav className="navbar navbar-light bg-light">
+		<nav className="navbar navbar-light bg-light p-2">
 			<div className="container d-flex justify-content-between">
-				{store.auth ? <button className="btn btn-primary" onClick={logOut}>Log out</button> : 
-				<button className="btn btn-primary" onClick={() => navigate("/signup")}>Sign up</button>}
+				{store.auth ? <button className="btn btn-danger shadow" onClick={logOut}>Log out</button> : 
+				<button className="btn btn-primary shadow" onClick={() => navigate("/signup")}>Sign up</button>}
 				{store.auth ? null : 
-				<button className="btn btn-secondary" onClick={() => navigate("/login")}>Login</button>}
+				<button className="btn btn-secondary shadow" onClick={() => navigate("/login")}>Login</button>}
 			</div>
 
 		</nav>

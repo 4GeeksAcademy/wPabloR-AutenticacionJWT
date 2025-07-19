@@ -17,10 +17,15 @@ export const Private = () => {
   }, [store.token, navigate])
 
 return (
-    <div className="container text-center mt-5">
-      <h1>Bienvenido a la zona privada 🚀</h1>
-      <p>Tu token es: <code>{store.token || localStorage.getItem("token")}</code></p>
-    </div>
-  );
+  <div className="d-flex flex-column justify-content-center align-items-center mt-5 container text-center">
+    <h1 className="mb-4 text-primary">Bienvenido a la zona privada 🚀</h1>
+    <p>
+      Tu token es:{" "}
+      <code className="bg-light p-2 rounded">
+        {store.token || localStorage.getItem("token")}
+      </code>
+    </p>
+  </div>
+);
 
 };

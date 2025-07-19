@@ -43,22 +43,50 @@ export const Login = () => {
   
     }
 
-  return (
-		<div className="text-center mt-5 container">
-			<form onSubmit={handleSubmit}>
-        <h1 className="mb-3">LOGIN</h1>
-				{store.error && <div className="alert alert-danger">{store.error}</div>}
+return (
+  <div className="container d-flex justify-content-center align-items-center mt-5">
+    <div className="card shadow p-4" style={{ maxWidth: "400px", width: "100%" }}>
+      <h2 className="text-center mb-4 text-primary">LOGIN</h2>
 
-				<div className="mb-3">
-					<label htmlFor="inputEmail" className="form-label">Email address</label>
-					<input type="email" className="form-control" id="inputEmail" aria-describedby="emailHelp" value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} />
-				</div>
-				<div className="mb-3">
-					<label htmlFor="inputPassword" className="form-label">Password</label>
-					<input type="password" className="form-control" id="inputPassword" value={form.password} onChange={(e) => setForm({...form, password: e.target.value})}/>
-				</div>
-				<button type="submit" className="btn btn-primary">Submit</button>
-			</form>
-		</div>
-	);
+      {store.error && (
+        <div className="alert alert-danger text-center" role="alert">
+          {store.error}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label htmlFor="inputEmail" className="form-label">Email address</label>
+          <input
+            type="email"
+            className="form-control"
+            id="inputEmail"
+            placeholder="you@example.com"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="inputPassword" className="form-label">Password</label>
+          <input
+            type="password"
+            className="form-control"
+            id="inputPassword"
+            placeholder="Enter your password"
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+            required
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary w-100">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+);
+
 };

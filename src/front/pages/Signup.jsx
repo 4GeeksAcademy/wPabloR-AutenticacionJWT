@@ -38,21 +38,50 @@ export const Signup = () => {
 
 
 	return (
-		<div className="text-center mt-5 container">
-			<h1 className="mb-3">SIGN UP</h1>
-			<form onSubmit={handleSubmit}>
-				{store.error && <div className="alert alert-danger">{store.error}</div>}
+  <div className="d-flex justify-content-center align-items-center mt-5">
+    <div className="card shadow p-4" style={{ maxWidth: "400px", width: "100%" }}>
+      <h2 className="mb-4 text-center text-primary">SIGN UP</h2>
 
-				<div className="mb-3">
-					<label htmlFor="inputEmail" className="form-label">Email address</label>
-					<input type="email" className="form-control" id="inputEmail" aria-describedby="emailHelp" value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} />
-				</div>
-				<div className="mb-3">
-					<label htmlFor="inputPassword" className="form-label">Password</label>
-					<input type="password" className="form-control" id="inputPassword" value={form.password} onChange={(e) => setForm({...form, password: e.target.value})}/>
-				</div>
-				<button type="submit" className="btn btn-primary">Submit</button>
-			</form>
-		</div>
-	);
+      {store.error && (
+        <div className="alert alert-danger text-center" role="alert">
+          {store.error}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label htmlFor="inputEmail" className="form-label">Email address</label>
+          <input
+            type="email"
+            className="form-control"
+            id="inputEmail"
+            aria-describedby="emailHelp"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            required
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="inputPassword" className="form-label">Password</label>
+          <input
+            type="password"
+            className="form-control"
+            id="inputPassword"
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+            required
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary w-100">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+);
+
 }; 
