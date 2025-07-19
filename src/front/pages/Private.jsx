@@ -9,7 +9,7 @@ export const Private = () => {
   const navigate = useNavigate()
 
   useEffect(()=>{ 
-    const token = store.token || sessionStorage.getItem("token")
+    const token = store.token || localStorage.getItem("token")
 
     if (!token){
       navigate("/login");
@@ -19,7 +19,7 @@ export const Private = () => {
 return (
     <div className="container text-center mt-5">
       <h1>Bienvenido a la zona privada 🚀</h1>
-      <p>Tu token es: <code>{store.token || sessionStorage.getItem("token")}</code></p>
+      <p>Tu token es: <code>{store.token || localStorage.getItem("token")}</code></p>
     </div>
   );
 

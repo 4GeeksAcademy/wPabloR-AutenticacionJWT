@@ -13,9 +13,9 @@ export const Login = () => {
       e.preventDefault();
       
       fetch('https://automatic-chainsaw-v6wv5v496g6qcwqw5-3001.app.github.dev/api/login', { 
-        method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(form)
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form)
       })
       .then((resp)=>{
         if (!resp.ok) throw new Error("Login failed")
@@ -29,11 +29,10 @@ export const Login = () => {
             token: data.token
           }
         })
-
-        sessionStorage.setItem("token", data.token);
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user))
         setForm({ email: "", password: "" });
         navigate("/private");
-
       })
       .catch(error => {
         dispatch({
@@ -47,6 +46,7 @@ export const Login = () => {
   return (
 		<div className="text-center mt-5 container">
 			<form onSubmit={handleSubmit}>
+        <h1 className="mb-3">LOGIN</h1>
 				{store.error && <div className="alert alert-danger">{store.error}</div>}
 
 				<div className="mb-3">

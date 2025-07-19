@@ -1,10 +1,12 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
 export const Signup = () => {
 
 	const { store, dispatch } = useGlobalReducer()
+	const navigate = useNavigate()
 
 	const[form, setForm] = useState({email: "", password: "" });
 
@@ -23,6 +25,7 @@ export const Signup = () => {
 		.then((data)=>{
 			alert(data.message);
 			setForm({ email: "", password: "" });
+			navigate("/private")
 		})
 		.catch(error => {
 			dispatch({
@@ -36,6 +39,7 @@ export const Signup = () => {
 
 	return (
 		<div className="text-center mt-5 container">
+			<h1 className="mb-3">SIGN UP</h1>
 			<form onSubmit={handleSubmit}>
 				{store.error && <div className="alert alert-danger">{store.error}</div>}
 
