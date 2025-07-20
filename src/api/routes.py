@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -13,6 +13,7 @@ api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
+
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -59,5 +60,12 @@ def login():
     if user is None or not check_password_hash(user.password, password):
         return jsonify({"error": "Bad email or password"}), 401
 
-    access_token = create_access_token(identity=user.id)
+    access_token = create_access_token(identity=(user.email))
     return jsonify({ "token": access_token, "email": user.email }), 200
+
+
+@api.route("/private", methods=["GET"])
+@jwt_required()
+def private():
+    current_user = get_jwt_identity()
+    return jsonify(message="Welcome to the private zone", user=current_user)

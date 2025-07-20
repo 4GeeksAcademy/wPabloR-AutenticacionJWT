@@ -12,7 +12,9 @@ export const Login = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       
-      fetch('https://automatic-chainsaw-v6wv5v496g6qcwqw5-3001.app.github.dev/api/login', { 
+      console.log("Enviando login con:", form);
+
+      fetch(import.meta.env.VITE_BACKEND_URL + 'api/login', { 
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(form)
@@ -25,12 +27,12 @@ export const Login = () => {
         dispatch({
           type: 'login',
           payload: {
-            user: data.user,
+            user: {email: data.email},
             token: data.token
           }
         })
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user))
+        localStorage.setItem("user", JSON.stringify({email: data.email}))
         setForm({ email: "", password: "" });
         navigate("/private");
       })

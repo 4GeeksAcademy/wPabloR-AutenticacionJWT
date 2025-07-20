@@ -13,7 +13,7 @@ export const Signup = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		
-		fetch('https://automatic-chainsaw-v6wv5v496g6qcwqw5-3001.app.github.dev/api/signup', { 
+		fetch(import.meta.env.VITE_BACKEND_URL + 'api/signup', { 
 			method: "POST",
       		headers: { "Content-Type": "application/json" },
       		body: JSON.stringify(form)
